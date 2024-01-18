@@ -22,7 +22,7 @@ function DetailTuris() {
   }, [id, token, dispatch]);
 
   return (
-    <div style={{ backgroundColor: "#f4f7fe", height: "100vh" }}>
+    <div>
       <Navbar />
       <div className="container">
         <div className="row">

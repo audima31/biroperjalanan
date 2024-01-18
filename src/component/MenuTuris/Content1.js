@@ -80,59 +80,73 @@ class Content1 extends Component {
             Tambah Data Turis
           </a>
         </button>
-        <table className="table table-striped text-center">
-          <thead>
+
+        <div>
+          <div className="row text-center">
+            <div className="col-1">
+              <p>No</p>
+            </div>
+            <div className="col">
+              <p>Nama</p>
+            </div>
+            <div className="col">
+              <p>Email</p>
+            </div>
+            <div className="col">
+              <p>Lokasi</p>
+            </div>
+            <div className="col">
+              <p>Aksi</p>
+            </div>
+          </div>
+          {getAllDataTouristResult.data ? (
+            getAllDataTouristResult.data
+              .slice(offset, offset + perPage)
+              .map((tourist, index) => (
+                <div
+                  className="row text-center listDataTuris mt-3 "
+                  key={index + 1}
+                >
+                  <div className="col-1 pt-3">
+                    <p>{index + 1 + offset + "."}</p>
+                  </div>
+                  <div className="col pt-3">
+                    <p>{tourist.tourist_name}</p>
+                  </div>
+                  <div className="col pt-3">
+                    <p>{tourist.tourist_email}</p>
+                  </div>
+                  <div className="col pt-3">
+                    <p>{tourist.tourist_location}</p>
+                  </div>
+                  <div className="col pt-2 ">
+                    <button type="button" className="btn btn-success me-3">
+                      <a href={`/dataTuris/detail/${tourist.id}`}>Detail</a>
+                    </button>
+                    <button type="button" className="btn btn-warning me-3">
+                      <a href={`/dataTuris/update/${tourist.id}`}> Edit</a>
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() =>
+                        this.handleDeleteTuris(tourist.id, tourist.tourist_name)
+                      }
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))
+          ) : getAllDataTouristLoading ? (
             <tr>
-              <th scope="col">No</th>
-              <th scope="col">Nama</th>
-              <th scope="col">Email</th>
-              <th scope="col">Lokasi</th>
-              <th scope="col">Aksi</th>
+              <td colSpan="5">Loading...</td>
             </tr>
-          </thead>
-          {/* Table body */}
-          <tbody>
-            {getAllDataTouristResult.data ? (
-              getAllDataTouristResult.data
-                .slice(offset, offset + perPage)
-                .map((tourist, index) => (
-                  <tr key={index + 1}>
-                    <th scope="row">{index + 1 + offset + "."}</th>
-                    <td>{tourist.tourist_name}</td>
-                    <td>{tourist.tourist_email}</td>
-                    <td>{tourist.tourist_location}</td>
-                    <td>
-                      <button type="button" className="btn btn-success me-3">
-                        <a href={`/dataTuris/detail/${tourist.id}`}>Detail</a>
-                      </button>
-                      <button type="button" className="btn btn-warning me-3">
-                        <a href={`/dataTuris/update/${tourist.id}`}> Edit</a>
-                      </button>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() =>
-                          this.handleDeleteTuris(
-                            tourist.id,
-                            tourist.tourist_name
-                          )
-                        }
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))
-            ) : getAllDataTouristLoading ? (
-              <tr>
-                <td colSpan="5">Loading...</td>
-              </tr>
-            ) : (
-              <tr>
-                <td colSpan="5">{getAllDataTouristError}</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+          ) : (
+            <tr>
+              <td colSpan="5">{getAllDataTouristError}</td>
+            </tr>
+          )}
+        </div>
 
         {/* Pagination */}
         {getAllDataTouristResult.data && (

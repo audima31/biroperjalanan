@@ -90,7 +90,7 @@ class TambahDataTuris extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "#f4f7fe", height: "100vh" }}>
+      <div>
         <Navbar />
         <div className="container mt-5">
           <div className="shadow  p-3 mb-5 bg-white rounded-4 px-5 py-5">

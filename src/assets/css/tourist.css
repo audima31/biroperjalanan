@@ -30,3 +30,24 @@
   .previousClass{
     color: black !important;
   }
+
+
+  .logoNavbar{
+    position: relative;
+    left: 50%; 
+    transform: translateX(-50%); 
+  }
+
+
+  /*  */
+  .dropdown{
+    position: relative;
+    left: 90%;
+  }
+
+  .listDataTuris{
+    border: 1px solid black;
+    color: #007bff;
+    padding: 2px 0px;
+    border-radius: 30px;
+  }

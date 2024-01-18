@@ -5,7 +5,7 @@ import Navbar from "../Navbar/Navbar";
 class MenuTuris extends Component {
   render() {
     return (
-      <div style={{ backgroundColor: "#f4f7fe", height: "100vh" }}>
+      <div>
         <Navbar />
         <Content1 />
       </div>
