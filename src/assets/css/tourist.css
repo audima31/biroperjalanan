@@ -1,0 +1,32 @@
+/* Add this CSS to your styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    color: black;
+  }
+  
+  .pagination li {
+    margin: 0px 5px;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.6em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination li:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination .activePagination {
+    color: #303135;
+    font-weight: bold;
+    background-color: #8d7f84 ;
+  }
+
+  .previousClass{
+    color: black !important;
+  }

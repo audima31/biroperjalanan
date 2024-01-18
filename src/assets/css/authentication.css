@@ -1,0 +1,53 @@
+.authenticationPage {
+    overflow: hidden;
+    background-color: #f4f7fe;
+    color: #303135;
+}
+
+.sideKiriAuthenticationPage{
+   height: 100vh;
+   position: relative; /* Tambahkan properti position: relative; */
+}
+
+.content1{
+    text-align: center;
+    transform: translateY(50%); 
+}
+
+.caption2AuthenticationPage{
+    font-size: 0.9em;
+    color: #8d7f84 ;
+    line-height: 20px;
+}
+
+.animasiImage{
+    width: 55%;
+    position: absolute; 
+    bottom: 0;
+    left: 50%; 
+    transform: translateX(-50%); 
+    animation: slideUp 3s infinite; /* Ubah durasi dan propertinya sesuai kebutuhan */
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-20px); /* Ubah nilai translateY sesuai dengan seberapa jauh elemen akan bergerak ke atas */
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.formAuthentication{
+    background-color:#FFFFFF !important; 
+    border-radius: 50px 0px 0px 50px;
+    height: 100vh;
+}
+
+.containerFormAuthentication{
+    padding-left: 15%;
+    padding-right: 15%;
+}
