@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getTouristById } from "../../store/actions/TouristAction";
 import Navbar from "../Navbar/Navbar";
 
@@ -16,6 +16,7 @@ function DetailTuris() {
 
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getTouristById(id, token));
@@ -31,9 +32,9 @@ function DetailTuris() {
             <div className="container-form  ms-3 p-3 mb-5 mt-5">
               <div className="row ">
                 <div className="col-4">
-                  <a href="/">
-                    <span class="bi bi-arrow-left ">
-                      <span className="ms-2 mb-4">Kembali</span>
+                  <a className=" btn-kembali" onClick={() => navigate(-1)}>
+                    <span className="bi bi-arrow-left ">
+                      <span className="ms-2">Kembali</span>
                     </span>
                   </a>
                   <img
@@ -58,14 +59,27 @@ function DetailTuris() {
                     </a>
                   </div>
                   <div className="mt-4 detailTurisCaption">
-                    <p style={{ color: "#818181" }}>Email :</p>
-                    <p className="fs-5">{getTouristByIdResult.tourist_email}</p>
-                    <p style={{ color: "#818181" }}>Nama : </p>
-                    <p className="fs-5">{getTouristByIdResult.tourist_name}</p>
-                    <p style={{ color: "#818181" }}>Lokasi : </p>
-                    <p className="fs-5">
+                    <label style={{ color: "#818181" }}>Email :</label>
+                    <br />
+                    <label className="fs-5">
+                      {getTouristByIdResult.tourist_email}
+                    </label>
+                    <br />
+                    <label className="mt-2" style={{ color: "#818181" }}>
+                      Nama :
+                    </label>
+                    <br />
+                    <label className="fs-5">
+                      {getTouristByIdResult.tourist_name}
+                    </label>
+                    <br />
+                    <label className="mt-2" style={{ color: "#818181" }}>
+                      Lokasi :
+                    </label>
+                    <br />
+                    <label className="fs-5">
                       {getTouristByIdResult.tourist_location}
-                    </p>
+                    </label>
                   </div>
                 </div>
               </div>

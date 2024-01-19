@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   getTouristById,
   updateTourist,
@@ -27,6 +27,7 @@ export default function UpdateDataTuris() {
 
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   //Jalanin action
   useEffect(() => {
@@ -101,7 +102,7 @@ export default function UpdateDataTuris() {
           <div className="col"></div>
           <div className="col-6">
             <div className="container-form p-3 mb-5 px-5 py-5">
-              <a href="/">
+              <a className="btn-kembali" onClick={() => navigate(-1)}>
                 <span className="bi bi-arrow-left ">
                   <span className="ms-2">Kembali</span>
                 </span>

@@ -1,6 +1,29 @@
 /* Add this CSS to your styles */
+/* 	xs <576px	
+sm ≥576px
+md ≥768px	
+lg ≥992px
+xl ≥1200px	
+xxl ≥1400px */
+* {
+  font-family: 'Poppins', sans-serif;
+}
 
+a {
+  text-decoration: none;
+}
 
+html,body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+p{
+  font-size: 14px;
+}
 
 .container-form{
   background-color: #2c2e3e;
@@ -8,10 +31,6 @@
   border-radius: 20px;
   color: #FFF;
   box-shadow: 0px 5px 20px #308c88;
-}
-
-p{
-  font-size: 14px;
 }
 
 .container-form .row {
@@ -78,7 +97,6 @@ p{
   .listDataTuris{
     border: 2px solid #bdbdbd;
     border-radius: 30px;
-    
   }
 
   .btn-detail{
@@ -99,7 +117,6 @@ p{
   .btn-delete{
     background-color:#fe6e6f;
     color: #fff;
-  
   }
 
   .linkButtonDelete :hover{
@@ -126,3 +143,158 @@ p{
     background-color: #2c2e3e;
     color: #303135;
   } 
+
+  .btn-kembali{
+    color: #fff;
+  }
+
+  .btn-kembali :hover{
+    color: #308C88;
+  }
+
+/* LG */
+  @media (max-width: 1200px) {
+  p{
+    font-size: 0.8em;
+  }
+
+  .btn-detail{
+      font-size: 0.8em;
+  }
+
+  .btn-delete{
+    font-size: 0.8em;
+  }
+  
+  .btn-edit{
+    font-size: 0.8em;
+  }
+  }
+
+  /* MD */
+  @media (max-width: 992px) {
+    p{
+      font-size: 0.7em;
+    }
+
+    .container-form .row {
+      padding: 0px;
+    }
+  
+    .btn-detail{
+        font-size: 0.7em;
+    }
+    .btn-delete{
+      font-size: 0.7em;
+    }
+    .btn-edit{
+      font-size: 0.7em;
+    }
+
+    .pagination {
+      font-size: 0.7em;
+    }
+    
+    .dropdown{
+      position: relative;
+      left: 85%;
+    }
+  }
+
+
+    @media (max-width: 868px) {
+      p{
+        font-size: 0.6em;
+      }
+  
+      .btn-detail{
+          font-size: 0.6em;
+      }
+
+      .btn-delete{
+        font-size: 0.6em;
+      }
+
+      .btn-edit{
+        font-size: 0.6em;
+      }
+  
+      .pagination {
+        font-size: 0.6em;
+      }
+      
+    }
+
+      @media (max-width: 821px) {
+        .btn-detail{
+            font-size: 0.35em;
+        }
+  
+        .btn-delete{
+          font-size: 0.35em;
+        }
+  
+        .btn-edit{
+          font-size: 0.35em;
+        }
+      }
+
+      /* SM */
+      @media (max-width: 768px) {
+        .btn-tambahData {
+          font-size: 10px;
+        }
+        .logoNavbar{
+          position:relative;
+          left: 0%; 
+          transform: translateX(0%); 
+          width: 8%;
+        }
+        .dropdown{
+          position: relative;
+          left: 0%;
+        }
+        .dropdown-item{
+          font-size: 0.6em;
+        }
+      }
+
+      /* XS */
+      @media (max-width: 576px) {
+        .textCaptionUtama{
+          /* text-shadow: 2px 2px 5px #308c88; */
+          text-shadow:  0px 5px 20px #308c88;
+          color: #fff;
+        }
+       
+        .listDataTuris{
+          border: 2px solid #bdbdbd;
+          border-radius: 10px;
+          color: #fff;
+        }
+
+        p{
+          font-size: 0.7em;
+        }
+    
+        .btn-detail{
+            font-size: 0.7em;
+        }
+  
+        .btn-delete{
+          font-size: 0.7em;
+        }
+  
+        .btn-edit{
+          font-size: 0.7em;
+        }
+    
+        .pagination {
+          font-size: 0.7em;
+        }
+        
+      }
+  
+     
+
+   

@@ -106,7 +106,7 @@ class TambahDataTuris extends Component {
             <div className="col"></div>
             <div className="col-6">
               <div className="container-form p-3 mb-5 px-5 py-5">
-                <a href="/">
+                <a href="/" className="btn-kembali">
                   <span class="bi bi-arrow-left ">
                     <span className="ms-2 ">Kembali</span>
                   </span>

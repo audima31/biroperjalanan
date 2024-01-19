@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import "./assets/css/home.css";
 import "./assets/css/authentication.css";
 import "./assets/css/global.css";
 import "./assets/css/tourist.css";
