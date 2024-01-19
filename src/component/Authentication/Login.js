@@ -22,6 +22,8 @@ class Login extends Component {
       Swal.fire({
         title: "Berhasil login",
         icon: "success",
+        background: "#2c2e3e",
+        color: "white",
       });
 
       setTimeout(() => {
@@ -59,11 +61,15 @@ class Login extends Component {
       Swal.fire({
         icon: "error",
         text: "Masukan email terlebih dahulu!",
+        background: "#2c2e3e",
+        color: "white",
       });
     } else if (!password) {
       Swal.fire({
         icon: "error",
         text: "Masukan password terlebih dahulu!",
+        background: "#2c2e3e",
+        color: "white",
       });
     } else {
       this.props.dispatch(loginUser(data));
@@ -77,6 +83,8 @@ class Login extends Component {
       Swal.fire({
         title: "Berhasil login",
         icon: "success",
+        background: "#2c2e3e",
+        color: "white",
         showConfirmButton: false,
       });
       setTimeout(() => {

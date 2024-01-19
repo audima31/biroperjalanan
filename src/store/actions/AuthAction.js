@@ -38,6 +38,8 @@ export const loginUser = (data) => {
         Swal.fire({
           title: "Akun tidak terdaftar",
           icon: "error",
+          background: "#2c2e3e",
+          color: "white",
         });
 
         dispatchError(dispatch, LOGIN_USER, error);
@@ -69,11 +71,15 @@ export const registerUser = (data) => {
           Swal.fire({
             title: "Data email telah terdaftar",
             icon: "error",
+            background: "#2c2e3e",
+            color: "white",
           });
         } else if (error.response.data.statusCode === 400) {
           Swal.fire({
             title: "Data email tidak sesuai!",
             icon: "error",
+            background: "#2c2e3e",
+            color: "white",
           });
         }
 

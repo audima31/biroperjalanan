@@ -23,6 +23,8 @@ class Register extends Component {
       Swal.fire({
         title: "Berhasil login",
         icon: "success",
+        background: "#2c2e3e",
+        color: "white",
       });
 
       setTimeout(() => {
@@ -69,16 +71,22 @@ class Register extends Component {
       Swal.fire({
         icon: "error",
         text: "Masukan email terlebih dahulu!",
+        background: "#2c2e3e",
+        color: "white",
       });
     } else if (!password) {
       Swal.fire({
         icon: "error",
         text: "Masukan password terlebih dahulu!",
+        background: "#2c2e3e",
+        color: "white",
       });
     } else if (!name) {
       Swal.fire({
         icon: "error",
         text: "Masukan nama anda terlebih dahulu!",
+        background: "#2c2e3e",
+        color: "white",
       });
     } else {
       this.props.dispatch(registerUser(data));
@@ -95,6 +103,8 @@ class Register extends Component {
       Swal.fire({
         title: "Pendaftaran akun telah berhasil!",
         icon: "success",
+        background: "#2c2e3e",
+        color: "white",
       });
       setTimeout(() => {
         window.location = "/login";

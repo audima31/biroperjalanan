@@ -56,16 +56,22 @@ class TambahDataTuris extends Component {
       Swal.fire({
         icon: "error",
         text: "Masukan email terlebih dahulu!",
+        background: "#2c2e3e",
+        color: "white",
       });
     } else if (!tourist_location) {
       Swal.fire({
         icon: "error",
         text: "Masukan location terlebih dahulu!",
+        background: "#2c2e3e",
+        color: "white",
       });
     } else if (!tourist_name) {
       Swal.fire({
         icon: "error",
         text: "Masukan nama anda terlebih dahulu!",
+        background: "#2c2e3e",
+        color: "white",
       });
     } else {
       this.props.dispatch(createTourist(dataTourist, token));
@@ -82,6 +88,8 @@ class TambahDataTuris extends Component {
       Swal.fire({
         title: "Penambahan Data Turis Telah Berhasil!",
         icon: "success",
+        background: "#2c2e3e",
+        color: "white",
       });
       setTimeout(() => {
         window.location = "/";

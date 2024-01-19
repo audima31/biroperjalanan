@@ -78,6 +78,8 @@ export const createTourist = (dataTourist, token) => {
         Swal.fire({
           title: "Penambahan Data Turis Gagal!",
           icon: "error",
+          background: "#2c2e3e",
+          color: "white",
         });
         dispatchError(dispatch, CREATE_TOURIST, "Error");
       });
@@ -100,6 +102,8 @@ export const updateTourist = (dataTourist, token) => {
         Swal.fire({
           title: "Penambahan Data Turis Telah Berhasil!",
           icon: "success",
+          background: "#2c2e3e",
+          color: "white",
         });
         setTimeout(() => {
           window.location = "/";
@@ -109,6 +113,8 @@ export const updateTourist = (dataTourist, token) => {
         Swal.fire({
           title: "Perubahan Data Turis Gagal!",
           icon: "error",
+          background: "#2c2e3e",
+          color: "white",
         });
         dispatchError(dispatch, UPDATE_TOURIST, "Error");
       });

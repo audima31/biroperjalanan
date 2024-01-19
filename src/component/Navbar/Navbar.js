@@ -9,7 +9,8 @@ class Navbar extends Component {
     Swal.fire({
       title: "Logout telah berhasil",
       icon: "success",
-      timer: 1000,
+      background: "#2c2e3e",
+      color: "white",
     });
   }
 
