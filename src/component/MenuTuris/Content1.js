@@ -20,7 +20,6 @@ class Content1 extends Component {
 
   componentDidMount() {
     const getToken = localStorage.getItem("token");
-    console.log("login sebelum:", this.state.login);
 
     if (getToken) {
       this.setState(
@@ -28,7 +27,6 @@ class Content1 extends Component {
           login: true,
         },
         () => {
-          console.log("login setelah:", this.state.login);
           this.props.dispatch(getAllDataTourist(getToken));
         }
       );

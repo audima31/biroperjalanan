@@ -15,6 +15,8 @@ class Navbar extends Component {
   }
 
   render() {
+    const sudahLogin = localStorage.getItem("token");
+
     return (
       <div>
         {/* >MD */}
@@ -48,65 +50,38 @@ class Navbar extends Component {
           </div>
         </div>
 
-        {/* SM */}
-        <div className="d-block d-sm-none">
-          <div className="pt-3 mx-5 d-flex align-items-center justify-content-between mb-5">
-            <img src={Logo} alt="" className="logoNavbar" />
-            <div className="dropdown">
-              <button
-                className="btn "
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i
-                  className="bi bi-person-fill fs-5"
-                  style={{ color: "#fff" }}
-                ></i>
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <a
-                    className="dropdown-item"
-                    href="/login"
-                    onClick={this.handleLogout}
-                  >
-                    Logout
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <div className="d-block d-md-none">
+          <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+              <img src={Logo} alt="" className="logoNavbar" />
 
-        <div className="d-none d-sm-block d-md-none">
-          <div className="pt-3 mx-5 d-flex align-items-center justify-content-between mb-5">
-            <img src={Logo} alt="" className="logoNavbar" />
-            <div className="dropdown">
               <button
-                className="btn "
+                class="navbar-toggler"
                 type="button"
-                data-bs-toggle="dropdown"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
                 aria-expanded="false"
+                aria-label="Toggle navigation"
               >
-                <i
-                  className="bi bi-person-fill fs-5"
-                  style={{ color: "#fff" }}
-                ></i>
+                <i class="bi bi-list" style={{ color: "white" }}></i>
               </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <a
-                    className="dropdown-item"
-                    href="/login"
-                    onClick={this.handleLogout}
-                  >
-                    Logout
-                  </a>
-                </li>
-              </ul>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mt-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="/login"
+                      onClick={this.handleLogout}
+                      style={{ color: "#308c88" }}
+                    >
+                      {sudahLogin ? <>Logout</> : <>Login</>}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
+          </nav>
         </div>
       </div>
     );
