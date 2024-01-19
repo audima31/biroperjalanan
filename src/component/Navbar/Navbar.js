@@ -11,10 +11,6 @@ class Navbar extends Component {
       icon: "success",
       timer: 1000,
     });
-
-    setTimeout(() => {
-      window.location = "/login";
-    }, 1500);
   }
 
   render() {
@@ -22,7 +18,7 @@ class Navbar extends Component {
       <div>
         <div
           style={{ position: "relative" }}
-          className="mt-3 d-flex align-items-center"
+          className=" pt-3 d-flex align-items-center"
         >
           <img src={Logo} alt="" className="logoNavbar" />
           <div className="dropdown">
@@ -36,7 +32,11 @@ class Navbar extends Component {
             </button>
             <ul className="dropdown-menu">
               <li>
-                <a className="dropdown-item" href="/login">
+                <a
+                  className="dropdown-item"
+                  href="/login"
+                  onClick={this.handleLogout}
+                >
                   Logout
                 </a>
               </li>

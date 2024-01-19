@@ -65,11 +65,17 @@ export const registerUser = (data) => {
       })
       .catch((error) => {
         // Bila terjadi error
-        console.log("ERROR: ", error);
-        Swal.fire({
-          title: error,
-          icon: "error",
-        });
+        if (error.response.data.statusCode === 409) {
+          Swal.fire({
+            title: "Data email telah terdaftar",
+            icon: "error",
+          });
+        } else if (error.response.data.statusCode === 400) {
+          Swal.fire({
+            title: "Data email tidak sesuai!",
+            icon: "error",
+          });
+        }
 
         dispatchError(dispatch, REGISTER_USER, error);
       });

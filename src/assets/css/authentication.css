@@ -1,7 +1,7 @@
 .authenticationPage {
     overflow: hidden;
-    background-color: #f4f7fe;
-    color: #303135;
+    background-color: #1e1f26;
+    color: #fff;
 }
 
 .sideKiriAuthenticationPage{
@@ -42,7 +42,7 @@
 }
 
 .formAuthentication{
-    background-color:#FFFFFF !important; 
+    background-color:#2c2e3e !important; 
     border-radius: 50px 0px 0px 50px;
     height: 100vh;
 }

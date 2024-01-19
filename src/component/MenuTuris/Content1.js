@@ -66,23 +66,23 @@ class Content1 extends Component {
     const offset = currentPage * perPage;
 
     return (
-      <div className="container shadow p-3 mb-5 bg-white rounded-4 mt-5">
+      <div
+        className="container shadow p-3 mb-5 bg-white rounded-4 mt-5"
+        style={{ backgroundColor: "#8d7f84" }}
+      >
         <p className="text-center fs-1 fw-bold my-4 mb-5">
-          Customer Datacakra Travell
+          Biro Perjalanan Datacakra
         </p>
-
-        <button
-          type="button"
-          className="btn mb-4"
-          style={{ backgroundColor: "#8d7f84" }}
-        >
-          <a href="/createTourist" className="text-white fw-semibold px-3">
+        <a href="/createTourist" className="linkButtonTambahData">
+          <button
+            type="button"
+            className="btn btn-tambahData px-4 mb-5 ms-5 fw-semibold "
+          >
             Tambah Data Turis
-          </a>
-        </button>
-
-        <div>
-          <div className="row text-center">
+          </button>
+        </a>
+        <div className="mx-5">
+          <div className="row text-center fw-semibold">
             <div className="col-1">
               <p>No</p>
             </div>
@@ -104,7 +104,7 @@ class Content1 extends Component {
               .slice(offset, offset + perPage)
               .map((tourist, index) => (
                 <div
-                  className="row text-center listDataTuris mt-3 "
+                  className="row text-center listDataTuris mb-3 "
                   key={index + 1}
                 >
                   <div className="col-1 pt-3">
@@ -120,20 +120,36 @@ class Content1 extends Component {
                     <p>{tourist.tourist_location}</p>
                   </div>
                   <div className="col pt-2 ">
-                    <button type="button" className="btn btn-success me-3">
-                      <a href={`/dataTuris/detail/${tourist.id}`}>Detail</a>
-                    </button>
-                    <button type="button" className="btn btn-warning me-3">
-                      <a href={`/dataTuris/update/${tourist.id}`}> Edit</a>
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() =>
-                        this.handleDeleteTuris(tourist.id, tourist.tourist_name)
-                      }
+                    <a
+                      href={`/detail/${tourist.id}`}
+                      className="fw-semibold linkButtonDetail"
                     >
-                      Delete
-                    </button>
+                      <button type="button" className="btn btn-detail  me-3">
+                        <i class="bi bi-eye-fill"></i>
+                      </button>
+                    </a>
+                    <a
+                      href={`/update/${tourist.id}`}
+                      className="fw-bold linkButtonEdit "
+                    >
+                      <button type="button" className="btn btn-edit me-3">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                    </a>
+
+                    <a className="linkButtonDelete">
+                      <button
+                        className="btn btn-delete fw-semibold"
+                        onClick={() =>
+                          this.handleDeleteTuris(
+                            tourist.id,
+                            tourist.tourist_name
+                          )
+                        }
+                      >
+                        <i class="bi bi-trash-fill"></i>
+                      </button>
+                    </a>
                   </div>
                 </div>
               ))
@@ -147,12 +163,14 @@ class Content1 extends Component {
             </tr>
           )}
         </div>
-
+        <br />
         {/* Pagination */}
         {getAllDataTouristResult.data && (
           <ReactPaginate
-            previousLabel={<span className="fw-semibold">Previous</span>}
-            nextLabel={"Next"}
+            previousLabel={
+              <span className="fw-semibold previousText">Previous</span>
+            }
+            nextLabel={<span className="fw-semibold previousText">Next</span>}
             breakClassName={"break-me"}
             pageCount={Math.ceil(getAllDataTouristResult.data.length / perPage)}
             marginPagesDisplayed={2}

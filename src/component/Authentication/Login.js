@@ -154,7 +154,7 @@ class Login extends Component {
                 <div className="text-center mt-3">
                   <label>
                     Belum punya akun?{" "}
-                    <a href="/register">
+                    <a href="/register" style={{ color: "#308C88" }}>
                       <label className="fw-semibold">Daftar yuk!</label>
                     </a>
                   </label>

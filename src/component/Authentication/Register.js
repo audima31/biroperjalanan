@@ -171,7 +171,7 @@ class Register extends Component {
                 <div className="text-center mt-3">
                   <label>
                     Udah punya akun?
-                    <a href="/login">
+                    <a href="/login" style={{ color: "#308C88" }}>
                       {" "}
                       <label className="fw-semibold">Log In disini!</label>
                     </a>

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./component/Home/Home";
 import Login from "./component/Authentication/Login";
 import Register from "./component/Authentication/Register";
 import TambahDataTuris from "./component/MenuTuris/TambahDataTuris";
@@ -13,14 +12,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Home />} exact></Route>
-        <Route path="/dataTuris" element={<MenuTuris />}></Route>
+        <Route path="/" element={<MenuTuris />} exact></Route>
         <Route path="/createTourist" element={<TambahDataTuris />}></Route>
-        <Route path="/dataTuris/detail/:id" element={<DetailTuris />}></Route>
-        <Route
-          path="/dataTuris/update/:id"
-          element={<UpdateDataTuris />}
-        ></Route>
+        <Route path="/detail/:id" element={<DetailTuris />}></Route>
+        <Route path="/update/:id" element={<UpdateDataTuris />}></Route>
 
         {/* <Route path="/product/detail/:id" element={<DetailProduct />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
