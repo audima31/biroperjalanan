@@ -6,12 +6,6 @@ class Navbar extends Component {
   handleLogout() {
     localStorage.removeItem("idUser");
     localStorage.removeItem("token");
-    Swal.fire({
-      title: "Logout telah berhasil",
-      icon: "success",
-      background: "#2c2e3e",
-      color: "white",
-    });
   }
 
   render() {
