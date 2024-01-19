@@ -42,7 +42,7 @@ class Navbar extends Component {
                     href="/login"
                     onClick={this.handleLogout}
                   >
-                    Logout
+                    {sudahLogin ? <>Logout</> : <>Login</>}
                   </a>
                 </li>
               </ul>
