@@ -97,8 +97,85 @@ class Login extends Component {
     const { loginUserLoading, loginUserResult, loginUserError } = this.props;
     return (
       <div className="authenticationPage">
-        <div className="row">
-          <div className="col-6 sideKiriAuthenticationPage">
+        {/* >MD */}
+        <div className="d-none d-md-block">
+          <div className="row ">
+            <div className="col-md-5 col-md-6 sideKiriAuthenticationPage">
+              <div className="container ">
+                <div className="content1">
+                  <img src={Logo} alt="" style={{ width: "18%" }} />
+                  <p className="fw-semibold mt-3 fs-2">
+                    Log in untuk nikmati semua <br /> keuntungannya!
+                  </p>
+                  <p className="caption2AuthenticationPage">
+                    Sangat mudah berwisata bersama Datacakra.
+                  </p>
+                </div>
+                <img className="animasiImage" src={Animasi} alt="" />
+              </div>
+            </div>
+            <div className="col  ">
+              <div className="formAuthentication shadow-lg p-3 d-flex align-items-center justify-content-center">
+                <div className=" w-100 mb-5 containerFormAuthentication">
+                  <p className="fw-bold fs-5">Log in</p>
+                  <form onSubmit={(event) => this.handleLogin(event)}>
+                    <div className="mt-4 mb-3">
+                      <input
+                        type="email"
+                        placeholder="Email"
+                        className="form-control py-2"
+                        id="exampleFormControlInput1"
+                        name="email"
+                        onChange={(event) => this.handleEmail(event)}
+                      ></input>
+                    </div>
+
+                    <div className="mb-3">
+                      <input
+                        type="password"
+                        placeholder="Password"
+                        className="form-control py-2"
+                        id="exampleFormControlInput2"
+                        name="password"
+                        onChange={(event) => this.handlePassword(event)}
+                      ></input>
+                    </div>
+                    {loginUserLoading ? (
+                      <button
+                        type="submit"
+                        className="btn fw-semibold button1 w-100 py-2"
+                      >
+                        <div class="spinner-border" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        className="btn fw-semibold button1 w-100 py-2"
+                      >
+                        Log In
+                      </button>
+                    )}
+                  </form>
+
+                  <div className="text-center mt-3">
+                    <label>
+                      Belum punya akun?{" "}
+                      <a href="/register" style={{ color: "#308C88" }}>
+                        <label className="fw-semibold">Daftar yuk!</label>
+                      </a>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* XS */}
+        <div className="d-block d-md-none">
+          <div className="sideKiriAuthenticationPage">
             <div className="container ">
               <div className="content1">
                 <img src={Logo} alt="" style={{ width: "18%" }} />
@@ -110,13 +187,7 @@ class Login extends Component {
                 </p>
               </div>
 
-              <img className="animasiImage" src={Animasi} alt="" />
-            </div>
-          </div>
-          <div className="col ">
-            <div className="formAuthentication shadow-lg p-3 d-flex align-items-center justify-content-center">
-              <div className="d-none d-md-block w-100 mb-5 containerFormAuthentication">
-                <p className="fw-bold fs-5">Log in</p>
+              <div className=" mb-5 ">
                 <form onSubmit={(event) => this.handleLogin(event)}>
                   <div className="mt-4 mb-3">
                     <input
@@ -167,6 +238,8 @@ class Login extends Component {
                   </label>
                 </div>
               </div>
+
+              <img className="animasiImage" src={Animasi} alt="" />
             </div>
           </div>
         </div>
