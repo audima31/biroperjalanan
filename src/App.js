@@ -10,9 +10,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} exact />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<MenuTuris />} exact></Route>
+        <Route path="/" element={<MenuTuris />}></Route>
         <Route path="/createTourist" element={<TambahDataTuris />}></Route>
         <Route path="/detail/:id" element={<DetailTuris />}></Route>
         <Route path="/update/:id" element={<UpdateDataTuris />}></Route>

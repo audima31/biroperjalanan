@@ -22,7 +22,7 @@ function DetailTuris() {
   }, [id, token, dispatch]);
 
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <Navbar />
       <div className="container">
         <div className="row">

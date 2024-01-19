@@ -94,7 +94,7 @@ export default function UpdateDataTuris() {
   }, [getTouristByIdResult]);
 
   return (
-    <div style={{ backgroundColor: "#1e1f26" }}>
+    <div style={{ backgroundColor: "#1e1f26", height: "100vh" }}>
       <Navbar />
       <div className="container ">
         <div className="row">
@@ -157,7 +157,6 @@ export default function UpdateDataTuris() {
           <div className="col"></div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
