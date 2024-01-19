@@ -596,11 +596,15 @@ class Content1 extends Component {
                   </div>
                 ))
             ) : getAllDataTouristLoading ? (
-              <p className="text-center my-5">Loading . . .</p>
+              <p className="text-center my-5" style={{ color: "#fff" }}>
+                Loading . . .
+              </p>
             ) : getAllDataTouristError ? (
-              <p className="text-center my-5">{getAllDataTouristError}</p>
+              <p className="text-center my-5" style={{ color: "#fff" }}>
+                {getAllDataTouristError}
+              </p>
             ) : (
-              <p className="text-center my-5">
+              <p className="text-center my-5" style={{ color: "#fff" }}>
                 Data tidak ditemukan, silahkan login terlebih dahulu!
               </p>
             )}
