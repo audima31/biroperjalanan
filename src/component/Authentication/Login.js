@@ -27,8 +27,6 @@ class Login extends Component {
       setTimeout(() => {
         window.location = "/";
       }, 1500);
-    } else {
-      // User login biasa
     }
   }
 
@@ -79,6 +77,7 @@ class Login extends Component {
       Swal.fire({
         title: "Berhasil login",
         icon: "success",
+        showConfirmButton: false,
       });
       setTimeout(() => {
         window.location = "/";

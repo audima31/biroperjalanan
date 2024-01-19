@@ -14,16 +14,50 @@ class Content1 extends Component {
     this.state = {
       currentPage: 0,
       perPage: 5,
+      login: false,
     };
   }
 
   componentDidMount() {
     const getToken = localStorage.getItem("token");
-    this.props.dispatch(getAllDataTourist(getToken));
+    console.log("login sebelum:", this.state.login);
+
+    if (getToken) {
+      this.setState(
+        {
+          login: true,
+        },
+        () => {
+          console.log("login setelah:", this.state.login);
+          this.props.dispatch(getAllDataTourist(getToken));
+        }
+      );
+    } else {
+      this.setState({
+        login: false,
+      });
+    }
   }
 
   handlePageClick = (data) => {
     this.setState({ currentPage: data.selected });
+  };
+
+  handleTambahData = () => {
+    const { login } = this.state;
+    if (login === false) {
+      Swal.fire({
+        title: "Wajib login terlebih dahulu!",
+        text: "Anda akan diarahkan ke halaman login",
+        icon: "error",
+        showConfirmButton: false,
+      });
+      setTimeout(() => {
+        window.location = "/login";
+      }, 2500);
+    } else {
+      window.location = "/createTourist";
+    }
   };
 
   handleDeleteTuris = (id, name) => {
@@ -46,6 +80,7 @@ class Content1 extends Component {
           icon: "success",
           background: "#2c2e3e",
           color: "white",
+          showConfirmButton: false,
         });
         this.props.dispatch(deleteTourist(id, getToken));
       }
@@ -81,14 +116,13 @@ class Content1 extends Component {
               <p className="text-center fs-3 fw-bold  ">
                 Biro Perjalanan Datacakra
               </p>
-              <a href="/createTourist" className="linkButtonTambahData">
-                <button
-                  type="button"
-                  className="btn btn-tambahData  fw-semibold "
-                >
-                  + Tambah Data Turis
-                </button>
-              </a>
+              <button
+                type="button"
+                className="btn btn-tambahData fw-semibold"
+                onClick={() => this.handleTambahData()}
+              >
+                + Tambah Data Turis
+              </button>
             </div>
 
             <div className="mx-5 container-dataTuris">
@@ -170,13 +204,13 @@ class Content1 extends Component {
                     </div>
                   ))
               ) : getAllDataTouristLoading ? (
-                <tr>
-                  <td colSpan="5">Loading...</td>
-                </tr>
+                <p className="text-center my-5">Loading . . .</p>
+              ) : getAllDataTouristError ? (
+                <p className="text-center my-5">{getAllDataTouristError}</p>
               ) : (
-                <tr>
-                  <td colSpan="5">{getAllDataTouristError}</td>
-                </tr>
+                <p className="text-center my-5">
+                  Data tidak ditemukan, silahkan login terlebih dahulu!
+                </p>
               )}
             </div>
             <br />
