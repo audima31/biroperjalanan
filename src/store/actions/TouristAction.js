@@ -97,6 +97,13 @@ export const updateTourist = (dataTourist, token) => {
       })
       .then((response) => {
         dispatchSuccess(dispatch, UPDATE_TOURIST, response.data);
+        Swal.fire({
+          title: "Penambahan Data Turis Telah Berhasil!",
+          icon: "success",
+        });
+        setTimeout(() => {
+          window.location = "/";
+        }, 1500);
       })
       .catch((error) => {
         Swal.fire({

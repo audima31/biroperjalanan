@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Logo from "../../assets/images/Home/LogoDatacakra.png";
+import Logo from "../../assets/images/Home/LogoDataCakra2.png";
 import Swal from "sweetalert2";
 
 class Navbar extends Component {
@@ -18,17 +18,20 @@ class Navbar extends Component {
       <div>
         <div
           style={{ position: "relative" }}
-          className=" pt-3 d-flex align-items-center"
+          className=" pt-3 d-flex align-items-center mb-5"
         >
           <img src={Logo} alt="" className="logoNavbar" />
           <div className="dropdown">
             <button
-              className="btn"
+              className="btn "
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i className="bi bi-person-fill fs-4"></i>
+              <i
+                className="bi bi-person-fill fs-3"
+                style={{ color: "#fff" }}
+              ></i>
             </button>
             <ul className="dropdown-menu">
               <li>

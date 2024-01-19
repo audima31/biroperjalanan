@@ -1,11 +1,33 @@
 /* Add this CSS to your styles */
 
+
+
+.container-form{
+  background-color: #2c2e3e;
+  border: 2px solid #4c465a;
+  border-radius: 20px;
+  color: #FFF;
+  box-shadow: 0px 5px 20px #308c88;
+}
+
+p{
+  font-size: 14px;
+}
+
+.container-form .row {
+  padding: 10px;
+}
+
+.previousText{
+  color: #308C88;
+ }
+ 
 .pagination {
     display: flex;
     justify-content: center;
     list-style: none;
     padding: 0;
-    color: black;
+    color: #FFF;
   }
   
   .pagination li {
@@ -18,7 +40,7 @@
   }
   
   .pagination .activePagination {
-    color: #303135;
+    color: #fff;
     font-weight: bold;
     background-color: #8d7f84 ;
   }
@@ -37,7 +59,7 @@
 
   /*  */
   .btn-tambahData {
-    background-color: #6496BA;
+    background-color: #308C88;
     color: #FFF;
     border-radius: 10px;
   }
@@ -54,13 +76,13 @@
 
   .listDataTuris{
     border: 2px solid #bdbdbd;
-    padding: 2px 0px;
     border-radius: 30px;
+    
   }
 
   .btn-detail{
-    background-color: #85F3B1;
-    color: #303135;
+    background-color: #9135f6;
+    color: #FFF;
   }
 
   .linkButtonDetail :hover{
@@ -69,39 +91,37 @@
   } 
 
   .linkButtonDetail :active {
-    background-color: white;
+    background-color: #2c2e3e;
     color: #303135;
   }
 
   .btn-delete{
-    background-color:#eda75f;
-    color: #303135;
+    background-color:#fe6e6f;
+    color: #fff;
   
   }
 
   .linkButtonDelete :hover{
-    background-color:#fbecdc;
+    background-color:#D19FA0;
     color: #303135;
   }
 
   .linkButtonDelete :active{
-    background-color:white;
+    background-color:#2c2e3e;
     color: #303135;
   }
 
   .btn-edit{
-    background-color: #8ba5c6;
-    color: #303135;
+    background-color: #f19632;
+    color: #FFF;
   }
 
   .linkButtonEdit :hover{
-    background-color: #dce5ee;
+    background-color: #B08C19;
     color: #303135;
   } 
 
   .linkButtonEdit :active{
-    background-color: white;
+    background-color: #2c2e3e;
     color: #303135;
   } 
-
- 

@@ -3,6 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import Swal from "sweetalert2";
 import { createTourist } from "../../store/actions/TouristAction";
 import { connect } from "react-redux";
+import Footer from "../Navbar/Footer";
 
 class TambahDataTuris extends Component {
   constructor(props) {
@@ -82,74 +83,78 @@ class TambahDataTuris extends Component {
         title: "Penambahan Data Turis Telah Berhasil!",
         icon: "success",
       });
-      // setTimeout(() => {
-      //   window.location = "/dataTuris";
-      // }, 1500);
+      setTimeout(() => {
+        window.location = "/";
+      }, 1500);
     }
   }
 
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: "#1e1f26" }}>
         <Navbar />
-        <div className="container mt-5">
-          <div className="shadow  p-3 mb-5 bg-white rounded-4 px-5 py-5">
-            <a href="/dataTuris" className="fs-5">
-              <span class="bi bi-arrow-left ">
-                <span className="ms-2 ">Kembali</span>
-              </span>
-            </a>
+        <div className="container">
+          <div className="row">
+            <div className="col"></div>
+            <div className="col-6">
+              <div className="container-form p-3 mb-5 px-5 py-5">
+                <a href="/">
+                  <span class="bi bi-arrow-left ">
+                    <span className="ms-2 ">Kembali</span>
+                  </span>
+                </a>
 
-            <p
-              className="fs-4 text-start fw-bold my-4"
-              style={{ color: "#303135" }}
-            >
-              Tambah Data Turis Baru
-            </p>
+                <p className="fs-4 text-start fw-bold my-4">
+                  Tambah Data Turis Baru
+                </p>
 
-            <form onSubmit={(event) => this.handleTambahDataTuris(event)}>
-              <div className="mt-4 mb-4">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="form-control py-3"
-                  id="exampleFormControlInput1"
-                  name="email"
-                  onChange={(event) => this.handleEmail(event)}
-                ></input>
+                <form onSubmit={(event) => this.handleTambahDataTuris(event)}>
+                  <div className="mt-4 mb-4">
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      className="form-control py-3"
+                      id="exampleFormControlInput1"
+                      name="email"
+                      onChange={(event) => this.handleEmail(event)}
+                    ></input>
+                  </div>
+
+                  <div className="mb-4">
+                    <input
+                      type="text"
+                      placeholder="Nama Lengkap"
+                      className="form-control py-3"
+                      id="exampleFormControlInput2"
+                      name="name"
+                      onChange={(event) => this.handleName(event)}
+                    ></input>
+                  </div>
+
+                  <div className="mb-4">
+                    <input
+                      type="text"
+                      placeholder="Lokasi"
+                      className="form-control py-3"
+                      id="exampleFormControlInput2"
+                      name="location"
+                      onChange={(event) => this.handleLocation(event)}
+                    ></input>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn fw-semibold button1 w-100 py-3 mb-4 mt-3"
+                  >
+                    Tambah Data
+                  </button>
+                </form>
               </div>
-
-              <div className="mb-4">
-                <input
-                  type="text"
-                  placeholder="Nama Lengkap"
-                  className="form-control py-3"
-                  id="exampleFormControlInput2"
-                  name="name"
-                  onChange={(event) => this.handleName(event)}
-                ></input>
-              </div>
-
-              <div className="mb-4">
-                <input
-                  type="text"
-                  placeholder="Lokasi"
-                  className="form-control py-3"
-                  id="exampleFormControlInput2"
-                  name="location"
-                  onChange={(event) => this.handleLocation(event)}
-                ></input>
-              </div>
-
-              <button
-                type="submit"
-                className="btn fw-semibold button1 w-100 py-3 mb-4 mt-3"
-              >
-                Tambah Data
-              </button>
-            </form>
+            </div>
+            <div className="col"></div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
