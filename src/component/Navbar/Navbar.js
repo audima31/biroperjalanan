@@ -50,7 +50,8 @@ class Navbar extends Component {
           </div>
         </div>
 
-        <div className="d-block d-md-none">
+        {/* <SM */}
+        <div className="d-block d-md-none mb-5">
           <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
               <img src={Logo} alt="" className="logoNavbar" />
