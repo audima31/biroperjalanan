@@ -6,7 +6,7 @@ import Footer from "../Navbar/Footer";
 class MenuTuris extends Component {
   render() {
     return (
-      <div style={{ backgroundColor: "#1e1f26" }}>
+      <div style={{ backgroundColor: "#1e1f26", minHeight: "100vh" }}>
         <Navbar />
         <Content1 />
         <Footer />

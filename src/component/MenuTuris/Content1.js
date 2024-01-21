@@ -12,44 +12,49 @@ class Content1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: 0,
-      perPage: 5,
       login: false,
+      page: 1,
+      perPage: 10,
     };
   }
 
   componentDidMount() {
     const getToken = localStorage.getItem("token");
-
+    const { page } = this.state;
     if (getToken) {
       this.setState(
         {
           login: true,
         },
         () => {
-          this.props.dispatch(getAllDataTourist(getToken));
+          this.props.dispatch(getAllDataTourist(getToken, page));
         }
       );
-    } else {
-      Swal.fire({
-        title: "Wajib login terlebih dahulu!",
-        text: "Anda akan diarahkan ke halaman login",
-        icon: "error",
-        background: "#2c2e3e",
-        color: "white",
-        showConfirmButton: false,
-      });
-      setTimeout(() => {
-        window.location = "/login";
-      }, 3500);
-      this.setState({
-        login: false,
-      });
     }
   }
 
-  handlePageClick = (data) => {
-    this.setState({ currentPage: data.selected });
+  handlePreviousPage = () => {
+    const { page } = this.state;
+
+    if (page > 1) {
+      const newPage = page - 1;
+      this.setState({ page: newPage }, () => {
+        const getToken = localStorage.getItem("token");
+        this.props.dispatch(getAllDataTourist(getToken, newPage));
+      });
+    }
+  };
+
+  handleNextPage = () => {
+    const { page } = this.state;
+
+    if (page) {
+      const newPage = page + 1;
+      this.setState({ page: newPage }, () => {
+        const getToken = localStorage.getItem("token");
+        this.props.dispatch(getAllDataTourist(getToken, newPage));
+      });
+    }
   };
 
   handleTambahData = () => {
@@ -105,7 +110,7 @@ class Content1 extends Component {
       prevProps.deleteDataTouristResult !== deleteDataTouristResult
     ) {
       const getToken = localStorage.getItem("token");
-      this.props.dispatch(getAllDataTourist(getToken));
+      this.props.dispatch(getAllDataTourist(getToken, this.state.page));
     }
   }
 
@@ -116,11 +121,8 @@ class Content1 extends Component {
       getAllDataTouristLoading,
     } = this.props;
 
-    const { currentPage, perPage } = this.state;
-    const offset = currentPage * perPage;
-
     return (
-      <div style={{ height: "100vh" }}>
+      <div>
         {/* Layar >LG */}
         <div className="container">
           <div className="container-form p-3 mb-5 mt-5 d-none d-lg-block">
@@ -163,62 +165,62 @@ class Content1 extends Component {
                 </div>
               </div>
               {getAllDataTouristResult.data ? (
-                getAllDataTouristResult.data
-                  .slice(offset, offset + perPage)
-                  .map((tourist, index) => (
-                    <div
-                      className="row text-center listDataTuris mb-3 "
-                      key={index + 1}
-                    >
-                      <div className="col-1 pt-3">
-                        <p>{index + 1 + offset + "."}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_name}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_email}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_location}</p>
-                      </div>
-                      <div className="col pt-2 ">
-                        <a
-                          href={`/detail/${tourist.id}`}
-                          className="fw-semibold linkButtonDetail"
-                        >
-                          <button
-                            type="button"
-                            className="btn btn-detail  me-3"
-                          >
-                            <i class="bi bi-eye-fill"></i>
-                          </button>
-                        </a>
-                        <a
-                          href={`/update/${tourist.id}`}
-                          className="fw-bold linkButtonEdit "
-                        >
-                          <button type="button" className="btn btn-edit me-3">
-                            <i class="bi bi-pencil-square"></i>
-                          </button>
-                        </a>
-
-                        <a className="linkButtonDelete">
-                          <button
-                            className="btn btn-delete fw-semibold"
-                            onClick={() =>
-                              this.handleDeleteTuris(
-                                tourist.id,
-                                tourist.tourist_name
-                              )
-                            }
-                          >
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </a>
-                      </div>
+                getAllDataTouristResult.data.map((tourist, index) => (
+                  <div
+                    className="row text-center listDataTuris mb-3 "
+                    key={index + 1}
+                  >
+                    <div className="col-1 pt-3">
+                      <p>
+                        {(this.state.page - 1) * this.state.perPage +
+                          index +
+                          1 +
+                          "."}
+                      </p>
                     </div>
-                  ))
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_name}</p>
+                    </div>
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_email}</p>
+                    </div>
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_location}</p>
+                    </div>
+                    <div className="col pt-2 ">
+                      <a
+                        href={`/detail/${tourist.id}`}
+                        className="fw-semibold linkButtonDetail"
+                      >
+                        <button type="button" className="btn btn-detail  me-3">
+                          <i class="bi bi-eye-fill"></i>
+                        </button>
+                      </a>
+                      <a
+                        href={`/update/${tourist.id}`}
+                        className="fw-bold linkButtonEdit "
+                      >
+                        <button type="button" className="btn btn-edit me-3">
+                          <i class="bi bi-pencil-square"></i>
+                        </button>
+                      </a>
+
+                      <a className="linkButtonDelete">
+                        <button
+                          className="btn btn-delete fw-semibold"
+                          onClick={() =>
+                            this.handleDeleteTuris(
+                              tourist.id,
+                              tourist.tourist_name
+                            )
+                          }
+                        >
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                ))
               ) : getAllDataTouristLoading ? (
                 <p className="text-center my-5">Loading . . .</p>
               ) : getAllDataTouristError ? (
@@ -230,28 +232,30 @@ class Content1 extends Component {
               )}
             </div>
             <br />
-            {/* Pagination */}
-            {getAllDataTouristResult.data && (
-              <ReactPaginate
-                previousLabel={
-                  <span className="fw-semibold previousText">Previous</span>
-                }
-                nextLabel={
-                  <span className="fw-semibold previousText">Next</span>
-                }
-                breakClassName={"break-me"}
-                pageCount={Math.ceil(
-                  getAllDataTouristResult.data.length / perPage
-                )}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={this.handlePageClick}
-                containerClassName={"pagination"}
-                activeClassName={"activePagination"}
-                previousClassName={"previousClass"}
-                nextClassName={"nextClass"}
-              />
-            )}
+
+            <div className="d-flex justify-content-center align-items-center">
+              <div>
+                <button
+                  className="buttonPagination"
+                  onClick={() => this.handlePreviousPage()}
+                >
+                  Previous
+                </button>
+              </div>
+              <div className="mx-3">
+                <p className="fw-semibold captionPagination">
+                  {this.state.page}
+                </p>
+              </div>
+              <div>
+                <button
+                  className="buttonPagination"
+                  onClick={() => this.handleNextPage()}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -295,62 +299,57 @@ class Content1 extends Component {
                 </div>
               </div>
               {getAllDataTouristResult.data ? (
-                getAllDataTouristResult.data
-                  .slice(offset, offset + perPage)
-                  .map((tourist, index) => (
-                    <div
-                      className="row text-center listDataTuris mb-3 "
-                      key={index + 1}
-                    >
-                      <div className="col-1 pt-3">
-                        <p>{index + 1 + offset + "."}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_name}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_email}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_location}</p>
-                      </div>
-                      <div className="col pt-2 ">
-                        <a
-                          href={`/detail/${tourist.id}`}
-                          className="fw-semibold linkButtonDetail"
-                        >
-                          <button
-                            type="button"
-                            className="btn btn-detail  me-2"
-                          >
-                            <i class="bi bi-eye-fill"></i>
-                          </button>
-                        </a>
-                        <a
-                          href={`/update/${tourist.id}`}
-                          className="fw-bold linkButtonEdit "
-                        >
-                          <button type="button" className="btn btn-edit me-2">
-                            <i class="bi bi-pencil-square"></i>
-                          </button>
-                        </a>
-
-                        <a className="linkButtonDelete">
-                          <button
-                            className="btn btn-delete fw-semibold"
-                            onClick={() =>
-                              this.handleDeleteTuris(
-                                tourist.id,
-                                tourist.tourist_name
-                              )
-                            }
-                          >
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </a>
-                      </div>
+                getAllDataTouristResult.data.map((tourist, index) => (
+                  <div
+                    className="row text-center listDataTuris mb-3 "
+                    key={index + 1}
+                  >
+                    <div className="col-1 pt-3">
+                      <p>{index + 1 + index + "."}</p>
                     </div>
-                  ))
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_name}</p>
+                    </div>
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_email}</p>
+                    </div>
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_location}</p>
+                    </div>
+                    <div className="col pt-2 ">
+                      <a
+                        href={`/detail/${tourist.id}`}
+                        className="fw-semibold linkButtonDetail"
+                      >
+                        <button type="button" className="btn btn-detail  me-2">
+                          <i class="bi bi-eye-fill"></i>
+                        </button>
+                      </a>
+                      <a
+                        href={`/update/${tourist.id}`}
+                        className="fw-bold linkButtonEdit "
+                      >
+                        <button type="button" className="btn btn-edit me-2">
+                          <i class="bi bi-pencil-square"></i>
+                        </button>
+                      </a>
+
+                      <a className="linkButtonDelete">
+                        <button
+                          className="btn btn-delete fw-semibold"
+                          onClick={() =>
+                            this.handleDeleteTuris(
+                              tourist.id,
+                              tourist.tourist_name
+                            )
+                          }
+                        >
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                ))
               ) : getAllDataTouristLoading ? (
                 <p className="text-center my-5">Loading . . .</p>
               ) : getAllDataTouristError ? (
@@ -362,28 +361,29 @@ class Content1 extends Component {
               )}
             </div>
             <br />
-            {/* Pagination */}
-            {getAllDataTouristResult.data && (
-              <ReactPaginate
-                previousLabel={
-                  <span className="fw-semibold previousText">Previous</span>
-                }
-                nextLabel={
-                  <span className="fw-semibold previousText">Next</span>
-                }
-                breakClassName={"break-me"}
-                pageCount={Math.ceil(
-                  getAllDataTouristResult.data.length / perPage
-                )}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={this.handlePageClick}
-                containerClassName={"pagination"}
-                activeClassName={"activePagination"}
-                previousClassName={"previousClass"}
-                nextClassName={"nextClass"}
-              />
-            )}
+            <div className="d-flex justify-content-center align-items-center">
+              <div>
+                <button
+                  className="buttonPagination"
+                  onClick={() => this.handlePreviousPage()}
+                >
+                  Previous
+                </button>
+              </div>
+              <div className="mx-3">
+                <p className="fw-semibold captionPagination">
+                  {this.state.page}
+                </p>
+              </div>
+              <div>
+                <button
+                  className="buttonPagination"
+                  onClick={() => this.handleNextPage()}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -428,59 +428,57 @@ class Content1 extends Component {
                 </div>
               </div>
               {getAllDataTouristResult.data ? (
-                getAllDataTouristResult.data
-                  .slice(offset, offset + perPage)
-                  .map((tourist, index) => (
-                    <div
-                      className="row text-center listDataTuris mb-3 "
-                      key={index + 1}
-                    >
-                      <div className="col-1 pt-3">
-                        <p>{index + 1 + offset + "."}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_name}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_email}</p>
-                      </div>
-                      <div className="col pt-3">
-                        <p>{tourist.tourist_location}</p>
-                      </div>
-                      <div className="col-4  pt-2 ">
-                        <a
-                          href={`/detail/${tourist.id}`}
-                          className="fw-semibold linkButtonDetail"
-                        >
-                          <button type="button" className="btn btn-detail me-1">
-                            <i class="bi bi-eye-fill"></i>
-                          </button>
-                        </a>
-                        <a
-                          href={`/update/${tourist.id}`}
-                          className="fw-bold linkButtonEdit "
-                        >
-                          <button type="button" className="btn btn-edit me-1">
-                            <i class="bi bi-pencil-square"></i>
-                          </button>
-                        </a>
-
-                        <a className="linkButtonDelete">
-                          <button
-                            className="btn btn-delete fw-semibold"
-                            onClick={() =>
-                              this.handleDeleteTuris(
-                                tourist.id,
-                                tourist.tourist_name
-                              )
-                            }
-                          >
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </a>
-                      </div>
+                getAllDataTouristResult.data.map((tourist, index) => (
+                  <div
+                    className="row text-center listDataTuris mb-3 "
+                    key={index + 1}
+                  >
+                    <div className="col-1 pt-3">
+                      <p>{index + 1 + index + "."}</p>
                     </div>
-                  ))
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_name}</p>
+                    </div>
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_email}</p>
+                    </div>
+                    <div className="col pt-3">
+                      <p>{tourist.tourist_location}</p>
+                    </div>
+                    <div className="col-4  pt-2 ">
+                      <a
+                        href={`/detail/${tourist.id}`}
+                        className="fw-semibold linkButtonDetail"
+                      >
+                        <button type="button" className="btn btn-detail me-1">
+                          <i class="bi bi-eye-fill"></i>
+                        </button>
+                      </a>
+                      <a
+                        href={`/update/${tourist.id}`}
+                        className="fw-bold linkButtonEdit "
+                      >
+                        <button type="button" className="btn btn-edit me-1">
+                          <i class="bi bi-pencil-square"></i>
+                        </button>
+                      </a>
+
+                      <a className="linkButtonDelete">
+                        <button
+                          className="btn btn-delete fw-semibold"
+                          onClick={() =>
+                            this.handleDeleteTuris(
+                              tourist.id,
+                              tourist.tourist_name
+                            )
+                          }
+                        >
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                ))
               ) : getAllDataTouristLoading ? (
                 <p className="text-center my-5">Loading . . .</p>
               ) : getAllDataTouristError ? (
@@ -492,28 +490,29 @@ class Content1 extends Component {
               )}
             </div>
             <br />
-            {/* Pagination */}
-            {getAllDataTouristResult.data && (
-              <ReactPaginate
-                previousLabel={
-                  <span className="fw-semibold previousText">Previous</span>
-                }
-                nextLabel={
-                  <span className="fw-semibold previousText">Next</span>
-                }
-                breakClassName={"break-me"}
-                pageCount={Math.ceil(
-                  getAllDataTouristResult.data.length / perPage
-                )}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={this.handlePageClick}
-                containerClassName={"pagination"}
-                activeClassName={"activePagination"}
-                previousClassName={"previousClass"}
-                nextClassName={"nextClass"}
-              />
-            )}
+            <div className="d-flex justify-content-center align-items-center">
+              <div>
+                <button
+                  className="buttonPagination"
+                  onClick={() => this.handlePreviousPage()}
+                >
+                  Previous
+                </button>
+              </div>
+              <div className="mx-3">
+                <p className="fw-semibold captionPagination">
+                  {this.state.page}
+                </p>
+              </div>
+              <div>
+                <button
+                  className="buttonPagination"
+                  onClick={() => this.handleNextPage()}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -552,58 +551,56 @@ class Content1 extends Component {
           </div>
           <div className="mx-1">
             {getAllDataTouristResult.data ? (
-              getAllDataTouristResult.data
-                .slice(offset, offset + perPage)
-                .map((tourist, index) => (
-                  <div
-                    className=" text-center listDataTuris mb-3 "
-                    key={index + 1}
-                  >
-                    <div className="row">
-                      <div className="col-4 pt-3">
-                        <p>{tourist.tourist_name}</p>
-                      </div>
-                      <div className="col-4 pt-3">
-                        <p>{tourist.tourist_email}</p>
-                      </div>
-                      <div className="col-4 pt-3">
-                        <p>{tourist.tourist_location}</p>
-                      </div>
-                      <div className="col-12 pb-3">
-                        <a
-                          href={`/detail/${tourist.id}`}
-                          className="fw-semibold linkButtonDetail"
-                        >
-                          <button type="button" className="btn btn-detail me-3">
-                            <i class="bi bi-eye-fill"></i>
-                          </button>
-                        </a>
-                        <a
-                          href={`/update/${tourist.id}`}
-                          className="fw-bold linkButtonEdit "
-                        >
-                          <button type="button" className="btn btn-edit me-3">
-                            <i class="bi bi-pencil-square"></i>
-                          </button>
-                        </a>
+              getAllDataTouristResult.data.map((tourist, index) => (
+                <div
+                  className=" text-center listDataTuris mb-3 "
+                  key={index + 1}
+                >
+                  <div className="row">
+                    <div className="col-4 pt-3">
+                      <p>{tourist.tourist_name}</p>
+                    </div>
+                    <div className="col-4 pt-3">
+                      <p>{tourist.tourist_email}</p>
+                    </div>
+                    <div className="col-4 pt-3">
+                      <p>{tourist.tourist_location}</p>
+                    </div>
+                    <div className="col-12 pb-3">
+                      <a
+                        href={`/detail/${tourist.id}`}
+                        className="fw-semibold linkButtonDetail"
+                      >
+                        <button type="button" className="btn btn-detail me-3">
+                          <i class="bi bi-eye-fill"></i>
+                        </button>
+                      </a>
+                      <a
+                        href={`/update/${tourist.id}`}
+                        className="fw-bold linkButtonEdit "
+                      >
+                        <button type="button" className="btn btn-edit me-3">
+                          <i class="bi bi-pencil-square"></i>
+                        </button>
+                      </a>
 
-                        <a className="linkButtonDelete">
-                          <button
-                            className="btn btn-delete fw-semibold"
-                            onClick={() =>
-                              this.handleDeleteTuris(
-                                tourist.id,
-                                tourist.tourist_name
-                              )
-                            }
-                          >
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </a>
-                      </div>
+                      <a className="linkButtonDelete">
+                        <button
+                          className="btn btn-delete fw-semibold"
+                          onClick={() =>
+                            this.handleDeleteTuris(
+                              tourist.id,
+                              tourist.tourist_name
+                            )
+                          }
+                        >
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </a>
                     </div>
                   </div>
-                ))
+                </div>
+              ))
             ) : getAllDataTouristLoading ? (
               <p className="text-center my-5" style={{ color: "#fff" }}>
                 Loading . . .
@@ -619,26 +616,27 @@ class Content1 extends Component {
             )}
           </div>
           <br />
-          {/* Pagination */}
-          {getAllDataTouristResult.data && (
-            <ReactPaginate
-              previousLabel={
-                <span className="fw-semibold previousText">Previous</span>
-              }
-              nextLabel={<span className="fw-semibold previousText">Next</span>}
-              breakClassName={"break-me"}
-              pageCount={Math.ceil(
-                getAllDataTouristResult.data.length / perPage
-              )}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              onPageChange={this.handlePageClick}
-              containerClassName={"pagination"}
-              activeClassName={"activePagination"}
-              previousClassName={"previousClass"}
-              nextClassName={"nextClass"}
-            />
-          )}
+          <div className="d-flex justify-content-center align-items-center">
+            <div>
+              <button
+                className="buttonPagination"
+                onClick={() => this.handlePreviousPage()}
+              >
+                Previous
+              </button>
+            </div>
+            <div className="mx-3">
+              <p className="fw-semibold captionPagination">{this.state.page}</p>
+            </div>
+            <div>
+              <button
+                className="buttonPagination"
+                onClick={() => this.handleNextPage()}
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     );

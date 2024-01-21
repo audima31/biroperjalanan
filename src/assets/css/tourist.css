@@ -1,11 +1,6 @@
 * {
   font-family: 'Poppins', sans-serif;
 }
-
-a {
-  text-decoration: none;
-}
-
 html,body {
   width: 100%;
   height: 100%;
@@ -30,37 +25,21 @@ p{
   padding: 10px;
 }
 
-.previousText{
+.captionPagination{
+    color:  #fff;
+    margin-top:  auto;
+    margin-bottom: auto;
+    background-color: #818181;
+    padding: 8px;
+    border-radius: 20px;
+  }
+
+.buttonPagination{
   color: #308C88;
- }
- 
-.pagination {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    color: #FFF;
-  }
-  
-  .pagination li {
-    margin: 0px 5px;
-    display: inline-block;
-    cursor: pointer;
-    padding: 0.6em;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .pagination .activePagination {
-    color: #fff;
-    font-weight: bold;
-    background-color: #8d7f84 ;
-  }
-
-  .previousClass{
-    color: black !important;
-  }
-
+  background-color: transparent;
+  border: 0px;
+  font-weight: 500;
+}
 
   .logoNavbar{
     position: relative;
@@ -184,10 +163,6 @@ p{
       font-size: 0.7em;
     }
 
-    .pagination {
-      font-size: 0.7em;
-    }
-    
     .dropdown{
       position: relative;
       left: 85%;
@@ -212,10 +187,6 @@ p{
         font-size: 0.6em;
       }
   
-      .pagination {
-        font-size: 0.6em;
-      }
-      
     }
 
       @media (max-width: 821px) {
@@ -285,11 +256,6 @@ p{
         .btn-edit{
           font-size: 0.7em;
         }
-    
-        .pagination {
-          font-size: 0.7em;
-        }
-        
       }
   
      

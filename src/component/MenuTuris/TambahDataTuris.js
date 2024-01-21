@@ -99,7 +99,7 @@ class TambahDataTuris extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "#1e1f26", height: "100vh" }}>
+      <div style={{ backgroundColor: "#1e1f26", minHeight: "100vh" }}>
         <Navbar />
         <div className="container">
           <div className="row">

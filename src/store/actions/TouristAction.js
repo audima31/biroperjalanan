@@ -13,12 +13,12 @@ export const CREATE_TOURIST = "CREATE_TOURIST";
 export const UPDATE_TOURIST = "UPDATE_TOURIST";
 export const DELETE_TOURIST = "DELETE_TOURIST";
 
-export const getAllDataTourist = (getToken) => {
+export const getAllDataTourist = (getToken, page = 0) => {
   return (dispatch) => {
     dispatchLoading(dispatch, GET_TOURIST);
 
     axios
-      .get(API_URL + "/api/Tourist?page=205", {
+      .get(API_URL + `/api/Tourist?page=${page}`, {
         headers: {
           Authorization: `Bearer ${getToken}`,
         },
