@@ -558,13 +558,19 @@ class ListDataTuris extends Component {
                 >
                   <div className="row">
                     <div className="col-4 pt-3">
-                      <p>{tourist.tourist_name}</p>
+                      <p style={{ fontSize: "0.55em" }}>
+                        {tourist.tourist_name}
+                      </p>
                     </div>
                     <div className="col-4 pt-3">
-                      <p>{tourist.tourist_email}</p>
+                      <p style={{ fontSize: "0.55em" }}>
+                        {tourist.tourist_email}
+                      </p>
                     </div>
                     <div className="col-4 pt-3">
-                      <p>{tourist.tourist_location}</p>
+                      <p style={{ fontSize: "0.55em" }}>
+                        {tourist.tourist_location}
+                      </p>
                     </div>
                     <div className="col-12 pb-3">
                       <a
