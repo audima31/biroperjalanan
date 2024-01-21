@@ -30,6 +30,21 @@ class ListDataTuris extends Component {
           this.props.dispatch(getAllDataTourist(getToken, page));
         }
       );
+    } else {
+      Swal.fire({
+        title: "Wajib login terlebih dahulu!",
+        text: "Anda akan diarahkan ke halaman login",
+        icon: "error",
+        background: "#2c2e3e",
+        color: "white",
+        showConfirmButton: false,
+      });
+      setTimeout(() => {
+        window.location = "/login";
+      }, 3500);
+      this.setState({
+        login: false,
+      });
     }
   }
 
