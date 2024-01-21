@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-class Content1 extends Component {
+class ListDataTuris extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -653,4 +653,4 @@ const mapStateToProps = (state) => ({
   deleteDataTouristError: state.TouristReducer.deleteDataTouristError,
 });
 
-export default connect(mapStateToProps, null)(Content1);
+export default connect(mapStateToProps, null)(ListDataTuris);

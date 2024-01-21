@@ -16,13 +16,6 @@ function App() {
         <Route path="/createTourist" element={<TambahDataTuris />}></Route>
         <Route path="/detail/:id" element={<DetailTuris />}></Route>
         <Route path="/update/:id" element={<UpdateDataTuris />}></Route>
-
-        {/* <Route path="/product/detail/:id" element={<DetailProduct />}></Route>
-        <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/journey" element={<Journey />}></Route>
-        <Route path="/payment" element={<Payment />}></Route>
-        <Route path="/keranjang" element={<Keranjang />}></Route>
-        <Route path="/mobileModal" element={<MobileModal />}></Route> */}
       </Routes>
     </Router>
   );
