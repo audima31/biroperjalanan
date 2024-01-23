@@ -61,12 +61,13 @@ export default function Profile() {
 
                 {/* Xs */}
                 <div className="col d-block d-sm-none">
-                  <div className="mt-4 detailTurisCaption">
-                    <label>{getDataUserResult.email}</label>
-                    <br />
-                    <label style={{ color: "#818181" }}>Nama :</label>
-                    <br />
+                  <div className="mt-4 detailTurisCaption text-center">
                     <label className="fs-5">{getDataUserResult.name}</label>
+                    <br />
+                    <label style={{ color: "#818181" }}>
+                      {getDataUserResult.email}
+                    </label>
+                    <br />
                     <br />
                   </div>
                 </div>

@@ -19,7 +19,9 @@ class Navbar extends Component {
             style={{ position: "relative" }}
             className=" pt-4 d-flex align-items-center mb-5"
           >
-            <img src={Logo} alt="" className="logoNavbar" />
+            <a className="logoNavbar" href="/">
+              <img src={Logo} alt="" />
+            </a>
             <div className="dropdown">
               <button
                 className="btn "
@@ -57,8 +59,9 @@ class Navbar extends Component {
         <div className="d-block d-md-none mb-5">
           <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
-              <img src={Logo} alt="" className="logoNavbar" />
-
+              <a className="logoNavbar" href="/">
+                <img src={Logo} alt="" />
+              </a>
               <button
                 class="navbar-toggler"
                 type="button"
@@ -72,6 +75,21 @@ class Navbar extends Component {
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mt-2 mb-lg-0">
+                  {sudahLogin ? (
+                    <>
+                      <li class="nav-item">
+                        <a
+                          class="nav-link"
+                          href="/profileUser"
+                          style={{ color: "#308c88" }}
+                        >
+                          Profile
+                        </a>
+                      </li>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   <li class="nav-item">
                     <a
                       class="nav-link"
