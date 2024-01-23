@@ -9,6 +9,7 @@ import axios from "axios";
 const API_URL = "https://biroperjalanan.datacakra.com";
 export const LOGIN_USER = "LOGIN_USER";
 export const REGISTER_USER = "REGISTER_USER";
+export const GET_DATA_USER = "GET_DATA_USER";
 
 export const loginUser = (data) => {
   return (dispatch) => {
@@ -84,6 +85,31 @@ export const registerUser = (data) => {
         }
 
         dispatchError(dispatch, REGISTER_USER, error);
+      });
+  };
+};
+
+export const getDataUser = (idUser, token) => {
+  return (dispatch) => {
+    dispatchLoading(dispatch, GET_DATA_USER);
+
+    axios
+      .get(API_URL + `/api/users/${idUser}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const dataAPI = response.data;
+        console.log("Data Action : ", dataAPI);
+
+        if (dataAPI) {
+          dispatchSuccess(dispatch, GET_DATA_USER, dataAPI);
+        }
+      })
+      .catch((error) => {
+        console.log("ERROR: ", error);
+        dispatchError(dispatch, GET_DATA_USER, error);
       });
   };
 };

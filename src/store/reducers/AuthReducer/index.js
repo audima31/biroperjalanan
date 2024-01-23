@@ -1,4 +1,8 @@
-import { LOGIN_USER, REGISTER_USER } from "../../actions/AuthAction";
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  GET_DATA_USER,
+} from "../../actions/AuthAction";
 
 const initialState = {
   loginUserLoading: false,
@@ -8,6 +12,10 @@ const initialState = {
   registerUserLoading: false,
   registerUserResult: false,
   registerUserError: false,
+
+  getDataUserLoading: false,
+  getDataUserResult: false,
+  getDataUserError: false,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -29,6 +37,13 @@ export default function (state = initialState, action) {
         registerUserError: action.payload.errorMessage,
       };
 
+    case GET_DATA_USER:
+      return {
+        ...state,
+        getDataUserLoading: action.payload.loading,
+        getDataUserResult: action.payload.data,
+        getDataUserError: action.payload.errorMessage,
+      };
     default:
       return state;
   }

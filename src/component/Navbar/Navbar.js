@@ -30,6 +30,15 @@ class Navbar extends Component {
                 <i className="bi bi-person-fill" style={{ color: "#fff" }}></i>
               </button>
               <ul className="dropdown-menu">
+                {sudahLogin ? (
+                  <li>
+                    <a className="dropdown-item" href="/profileUser">
+                      Profile
+                    </a>
+                  </li>
+                ) : (
+                  <></>
+                )}
                 <li>
                   <a
                     className="dropdown-item"
